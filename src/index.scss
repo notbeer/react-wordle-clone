@@ -1,0 +1,20 @@
+@import './scss/global/variables.scss';
+
+* {
+    border: none;
+    outline: none;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    list-style: none;
+}
+
+html {
+    -webkit-tap-highlight-color: transparent;
+    font-size: clamp(0.5rem, 3vmin, 1rem);
+}
+body {
+    background: #121213;
+    color: var(--font);
+    font-family: 'Poppins', sans-serif;
+}

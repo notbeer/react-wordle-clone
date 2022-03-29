@@ -1,0 +1,34 @@
+section#Keyboard {
+    margin: 0 0.5rem;
+    display: grid;
+    justify-content: center;
+    grid-template-columns: repeat(20, minmax(auto, 1.12rem));
+    grid-auto-rows: 3.7rem;
+    gap: 0.4rem;
+    button.key {
+        background-color: var(--key-bg);
+        color: white;
+        fill: white;
+        border-radius: 0.25rem;
+        text-transform: uppercase;
+        padding: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        grid-column: span 2;
+        cursor: pointer;
+        user-select: none;
+        &.column-3 {
+            grid-column: span 3;
+        }
+        &.absent {
+            background-color: var(--color-absent);
+        }
+        &.present {
+            background-color: var(--color-present);
+        }
+        &.correct {
+            background-color: var(--color-correct);
+        }
+    }
+}

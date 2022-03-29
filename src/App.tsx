@@ -1,26 +1,15 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import './app.scss';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}
+import Toaster from './components/toaster/toaster';
+import Board from './components/board/board';
+import Keyboard from './components/keyboard/keyboard';
 
-export default App;
+export default function App() {
+    return (
+        <div id='Game'>
+            <Toaster/>
+            <Board/>
+            <Keyboard/>
+        </div>
+    );
+};

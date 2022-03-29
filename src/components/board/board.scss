@@ -1,0 +1,100 @@
+section#Board {
+    margin: 0 0 1rem 0;
+    display: grid;
+    justify-content: center;
+    align-content: center;
+    flex-grow: 1;
+    grid-template-columns: repeat(5, 4rem);
+    grid-template-rows: repeat(6, 4rem);
+    grid-gap: 5px;
+    div.tile {
+        color: white;
+        border: 0.15rem solid rgb(57, 57, 60);
+        font-size: 2rem;
+        font-weight: bold;
+        text-transform: uppercase;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        user-select: none;
+        transition: transform 250ms linear;
+        &[data-state='active'] {
+            border-color: #565758;
+        }
+        &[data-state='absent'] {
+            border-color: none;
+            background-color: var(--color-absent);
+        }
+        &[data-state='present'] {
+            border-color: none;
+            background-color: var(--color-present);
+        }
+        &[data-state='correct'] {
+            border-color: none;
+            background-color: var(--color-correct);
+        }
+        &.keyPress {
+            animation: keyPress 100ms linear;
+        }
+        @keyframes keyPress {
+            0% {
+              transform: scale(1);
+            }
+            50% {
+              transform: scale(1.1);
+            }
+            100% {
+              transform: scale(1);
+            }
+        }     
+        &.shake {
+            animation: shake 300ms ease-in-out;
+        }     
+        @keyframes shake {
+            10% {
+                transform: translateX(-0.3rem);
+            }
+            30% {
+                transform: translateX(0.5rem);
+            }
+            50% {
+                transform: translateX(-0.5rem);
+            }
+            70% {
+                transform: translateX(0.5rem);
+            }
+            90% {
+                transform: translateX(-0.3rem);
+            }
+            100% {
+                transform: translateX(0);
+            }
+        }
+        &.flip {
+            transform: rotateX(90deg);
+        }
+        @keyframes dance {
+            20% {
+              transform: translateY(-50%);
+            }  
+            40% {
+              transform: translateY(5%);
+            }  
+            60% {
+              transform: translateY(-25%);
+            }  
+            80% {
+              transform: translateY(2.5%);
+            }  
+            90% {
+              transform: translateY(-5%);
+            }  
+            100% {
+              transform: translateY(0);
+            }
+        }
+        &.dance {
+            animation: dance 500ms ease-in-out;
+        }
+    }
+}
