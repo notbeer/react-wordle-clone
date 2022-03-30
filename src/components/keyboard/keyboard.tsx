@@ -43,10 +43,7 @@ export default function Keyboard() {
         return document.querySelector('section#Board')!.querySelectorAll('[data-state="active"]') as NodeListOf<HTMLDivElement>;
     };
     const shakeTiles = (tiles: Array<HTMLDivElement>) => {
-        const notActiveTiles = [...document.querySelector('section#Board')?.querySelectorAll(':not([data-state="active"])') as NodeListOf<HTMLDivElement>];
-        for(let i = tiles.length, j = 0; i < 5; i++, j++) {
-            tiles.push(notActiveTiles[j]);
-        };
+        if(tiles.length < 5) tiles.push(...[...document.querySelector('section#Board')?.querySelectorAll(':not([data-state="active"])') as NodeListOf<HTMLDivElement>].splice(0, 5 - tiles.length));
         tiles.forEach(tile => {
             tile.classList.add("shake");
             tile.addEventListener("animationend", () => {
@@ -73,21 +70,21 @@ export default function Keyboard() {
                     val.dataset.state = 'absent';
                     key.classList.add('absent');
                 };
+                if(i === 4) {
+                    toast('Genius', 3000);
+                    if(wordGuessed === word) {
+                        tiles.forEach((val, i) => {
+                            setTimeout(() => {
+                                val.classList.add("dance");
+                                val.addEventListener("animationend", () => {
+                                    val.classList.remove("dance");
+                                }, { once: true });
+                            }, i * 500 / 5);
+                        });
+                    } else setIgnoreKey(false);
+                };
             }, { once: true });
         });
-        setTimeout(() => {
-            if(wordGuessed === word) {
-                tiles.forEach((val, i) => {
-                    setTimeout(() => {
-                        val.classList.add("dance");
-                        val.addEventListener("animationend", () => {
-                            val.classList.remove("dance");
-                        }, { once: true });
-                        if(i === 4) toast('You win! Genius-', 3000)
-                    }, i * 500 / 5);
-                });
-            } else setIgnoreKey(false);
-        }, 5 * 510 / 2);
     };
     const enterKey = (letter: string) => {
         if(getActiveTiles().length >= 5) return;
