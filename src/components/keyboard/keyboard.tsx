@@ -83,7 +83,7 @@ export default function Keyboard() {
                         val.addEventListener("animationend", () => {
                             val.classList.remove("dance");
                         }, { once: true });
-                        if(i === 4) toast('You win! Genius-')
+                        if(i === 4) toast('You win! Genius-', 3000)
                     }, i * 500 / 5);
                 });
             } else setIgnoreKey(false);
