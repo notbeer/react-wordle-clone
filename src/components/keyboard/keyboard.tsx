@@ -71,8 +71,8 @@ export default function Keyboard() {
                     key.classList.add('absent');
                 };
                 if(i === 4) {
-                    toast('Genius', 3000);
                     if(wordGuessed === word) {
+                        toast('Genius', 3000);
                         tiles.forEach((val, i) => {
                             setTimeout(() => {
                                 val.classList.add("dance");
